@@ -2,7 +2,7 @@
   "name": "ramda-in-fl4m3s",
   "version": "1.0.0",
   "description": "Complementary utils library that adds new functions on top of ramda.",
-  "main": "src/index.js",
+  "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
