@@ -10,13 +10,17 @@ Which version of my utils is the latest? Which one has issue X fixed? You don't 
 
 This utils comes with the following extra functions:
 
- - notEmpty,
- - allTrue,
- - notNil,
- - assocTrans,
- - isFunction,
- - renameProp,
- - mapToSequentialPromises,
- - waitAll,
- - applyAsyncFn,
+ - notEmpty
+ - allEqual
+ - notNil
+ - assocTrans
+ - isFunction
+ - isNumber
+ - isMap
+ - isString
+ - isArray
+ - renameProp
+ - mapToSequentialPromises
+ - waitAll
+ - mapAsyncFn
  - compact
