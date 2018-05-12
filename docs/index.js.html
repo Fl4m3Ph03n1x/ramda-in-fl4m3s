@@ -119,6 +119,13 @@ const notEmpty = complement( isEmpty );
  * @returns {Boolean}   &lt;code>false&lt;/code> if the object is &lt;code>null&lt;/code> or &lt;code>undefined&lt;/code>, &lt;code>false&lt;/code> otherwise.
  * 
  * @see     http://ramdajs.com/docs/#isNil
+ * 
+ * @example
+ * const { notNil } = require("ramda-in-fl4m3s");
+ * notNil(null); //=> false
+ * notNil(undefined); //=> false
+ * notNil(0); //=> true
+ * notNil([]); //=> true
  */
 const notNil = complement( isNil );
 
@@ -134,6 +141,7 @@ const notNil = complement( isNil );
  * 
  * @see     http://ramdajs.com/docs/#all
  * @see     http://ramdajs.com/docs/#equal
+ * 
  */
 const allEqual = curry(
     ( value, list ) => all( equals( value ), list )

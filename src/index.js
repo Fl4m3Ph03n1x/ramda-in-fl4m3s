@@ -53,8 +53,6 @@ const notNil = complement( isNil );
  * @see     http://ramdajs.com/docs/#all
  * @see     http://ramdajs.com/docs/#equal
  * 
- * @example
- * 
  */
 const allEqual = curry(
     ( value, list ) => all( equals( value ), list )
