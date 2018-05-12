@@ -1,0 +1,26 @@
+{
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc"]
+    },
+    "recurseDepth": 2,
+    "source": {
+        "include": ["./src/index.js"],
+        "excludePattern": "(node_modules/|docs)"
+    },
+    "plugins": [
+        "plugins/markdown"
+    ],
+    "templates": {
+        "referenceTitle": "ramda-in-fl4m3s",
+        "disableSort": false
+    },
+    "opts": {
+        "readme": "./README.md",
+        "destination": "./docs/",
+        "encoding": "utf8",
+        "private": true,
+        "recurse": true,
+        "template": "./node_modules/braintree"
+    }
+}
