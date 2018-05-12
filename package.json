@@ -1,10 +1,10 @@
 {
   "name": "ramda-in-fl4m3s",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Complementary utils library that adds new functions on top of ramda.",
   "main": "./src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "document": "./node_modules/.bin/jsdoc --configure .jsdoc.json --verbose"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
     "ramda": "^0.25.0"
   },
   "devDependencies": {
-    "eslint": "^4.19.1"
+    "eslint": "^4.19.1",
+    "jsdoc": "^3.5.5"
   }
 }

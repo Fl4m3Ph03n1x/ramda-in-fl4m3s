@@ -1,6 +1,7 @@
 const { isEmpty, pipe, all, equals, isNil, assoc, curry, is, prop, dissoc, last, append, reduce, map, identity, allPass, filter, complement } = require("ramda");
 
 /**
+ * @function    notEmpty
  * @description
  * Complement of <code>isEmpty</code>. Returns <code>false</code> if the given value is its type's empty value; <code>true</code> otherwise.
  * 
@@ -12,6 +13,7 @@ const { isEmpty, pipe, all, equals, isNil, assoc, curry, is, prop, dissoc, last,
 const notEmpty = complement( isEmpty );
 
 /**
+ * @function    notNil
  * @description
  * Complement of <code>isNil</code>. Returns <code>true</code> if the given value is **not** <code>null</code> or <code>undefined</code>, <code>false</code> otherwise.
  * 
@@ -23,6 +25,7 @@ const notEmpty = complement( isEmpty );
 const notNil = complement( isNil );
 
 /**
+ * @function    allEqual
  * @description
  * Composition of <code>all</code> and <code>equals</code>. 
  * Returns <code>true</code> if all the values in the given list are equal to the value to test against.
@@ -39,6 +42,7 @@ const allEqual = curry(
 );
 
 /**
+ * @function    isFunction
  * @description
  * Returns <code>true</code> of the given value is a Function, <code>false</code> otherwise.
  * 
@@ -50,6 +54,7 @@ const allEqual = curry(
 const isFunction    =   is( Function );
 
 /**
+ * @function    isNumber
  * @description
  * Returns <code>true</code> of the given value is a Number, <code>false</code> otherwise.
  * 
@@ -61,6 +66,7 @@ const isFunction    =   is( Function );
 const isNumber      =   is( Number );
 
 /**
+ * @function    isString
  * @description
  * Returns <code>true</code> of the given value is a String, <code>false</code> otherwise.
  * 
@@ -72,6 +78,7 @@ const isNumber      =   is( Number );
 const isString      =   is( String );
 
 /**
+ * @function    isArray
  * @description
  * Returns <code>true</code> of the given value is an Array, <code>false</code> otherwise.
  * 
@@ -83,6 +90,7 @@ const isString      =   is( String );
 const isArray       =   is( Array );
 
 /**
+ * @function    isMap
  * @description
  * Returns <code>true</code> of the given value is a Map, <code>false</code> otherwise.
  * 
@@ -94,6 +102,7 @@ const isArray       =   is( Array );
 const isMap         =   is( Map );
 
 /**
+ * @function    compact
  * @description
  * Returns a copy of the array with all falsey values removed.
  * 
@@ -105,6 +114,7 @@ const compact = filter(
 );
 
 /**
+ * @function    assocTrans
  * @description
  * Makes a shallow clone of the target object, setting or overriding the specified property with the result of the given function over the target object. 
  * Note that this copies and flattens prototype properties onto the new object as well. All non-primitive properties are copied by reference.
@@ -121,6 +131,7 @@ const assocTrans = curry(
 );
 
 /**
+ * @function    renameProp
  * @description
  * Makes a shallow clone of the target object, renaming the given property.
  * Note that this copies and flattens prototype properties onto the new object as well. All non-primitive properties are copied by reference.
@@ -138,6 +149,7 @@ const renameProp = curry(
 );
 
 /**
+ * @function    mapToSequentialPromises
  * @description
  * Applies <code>fn</code> sequentially to each element of <code>list</code>. 
  * If <code>fn</code> is async and returns a Promise, then each Promise will be executed only when the previous Promise has resolved.
@@ -163,20 +175,58 @@ const mapToSequentialPromises = curry(
         )
 );
 
-const waitAll = requests => Promise.all( requests );
-
 /**
+ * @function    mapAsyncFn
  * @description
  * Applies <code>fn</code> concurrently to each element of <code>list</code>. 
  * Unlike <code>mapToSequentialPromises</code> the execution of Promise N+1 will not wait for the resolution of Promise N. 
  * Finishes once all the Promises are done via use of Promise.all. 
  * 
- * @param   {Function}  fn      The function to apply to each element of <code>list</code>.
- * @param   {List}      list    The list to be iterated over concurrently.
- * @returns A single Promise containing the new list.
+ * @param       {Function}  fn      The function to apply to each element of <code>list</code>.
+ * @param       {List}      list    The list to be iterated over concurrently.
+ * @returns     {Promise}   A promise containing the new list.
  */
 const mapAsyncFn = curry(
     ( asyncFn, list ) => Promise.all( map( asyncFn, list ) )
+);
+
+/**
+ * @function    seedlessReduce
+ * @description
+ * Reduce transformation using the head of the given list as initial input. 
+ * 
+ * @param   {Function}  fn      The reduce function.
+ * @param   {List}      list    List of values to reduce.
+ * @returns {*}         The result of the iteration function.
+ */
+const seedlessReduce = curry(
+    ( fn, list ) => list.reduce( fn )
+);
+
+/**
+ * @function    promiseAll
+ * @description
+ * Alias for Promise.all. Receives a list of promises and waits for all of them to complete or for one to reject.
+ * Returns a single Promise.
+ * 
+ * @param   {List}      pList   The list of promises. 
+ * @returns {Promise}   A single promise containing the list of results if every promise in <code>pList</code> was fulfilled.
+ * 
+ * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
+ */
+const promiseAll = pList => Promise.all( pList );
+
+/**
+ * @function    then
+ * @description
+ * Executes the given function after <code>promise</code> finishes resolving.
+ * 
+ * @param   {Function}  fn      The function to execute after <code>promise</code>.
+ * @param   {Promise}   promise The promise to run.
+ * @returns {Promise}   A promise with the return value of <code>fn</code>. 
+ */
+const then = curry(
+    ( fn, promise ) => promise.then( fn )
 );
 
 module.exports = Object.freeze( {
@@ -191,7 +241,9 @@ module.exports = Object.freeze( {
     isArray,
     renameProp,
     mapToSequentialPromises,
-    waitAll,
+    promiseAll,
     mapAsyncFn,
-    compact
+    compact,
+    seedlessReduce,
+    then
 } );
