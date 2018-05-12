@@ -9,6 +9,15 @@ const { isEmpty, pipe, all, equals, isNil, assoc, curry, is, prop, dissoc, last,
  * @returns {Boolean}   <code>false</code> if the object is empty, <code>true</code> otherwise.
  * 
  * @see     http://ramdajs.com/docs/#isEmpty
+ * 
+ * @example
+ * const { notEmpty } = require("ramda-in-fl4m3s");
+ * notEmpty([1, 2, 3]);   //=> true
+ * notEmpty([]);          //=> false
+ * notEmpty('');          //=> false
+ * notEmpty(null);        //=> true
+ * notEmpty({});          //=> false
+ * notEmpty({length: 0}); //=> true
  */
 const notEmpty = complement( isEmpty );
 
@@ -21,6 +30,13 @@ const notEmpty = complement( isEmpty );
  * @returns {Boolean}   <code>false</code> if the object is <code>null</code> or <code>undefined</code>, <code>false</code> otherwise.
  * 
  * @see     http://ramdajs.com/docs/#isNil
+ * 
+ * @example
+ * const { notNil } = require("ramda-in-fl4m3s");
+ * notNil(null); //=> false
+ * notNil(undefined); //=> false
+ * notNil(0); //=> true
+ * notNil([]); //=> true
  */
 const notNil = complement( isNil );
 
@@ -36,6 +52,9 @@ const notNil = complement( isNil );
  * 
  * @see     http://ramdajs.com/docs/#all
  * @see     http://ramdajs.com/docs/#equal
+ * 
+ * @example
+ * 
  */
 const allEqual = curry(
     ( value, list ) => all( equals( value ), list )

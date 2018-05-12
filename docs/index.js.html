@@ -98,6 +98,15 @@
  * @returns {Boolean}   &lt;code>false&lt;/code> if the object is empty, &lt;code>true&lt;/code> otherwise.
  * 
  * @see     http://ramdajs.com/docs/#isEmpty
+ * 
+ * @example
+ * const { notEmpty } = require("ramda-in-fl4m3s");
+ * notEmpty([1, 2, 3]);   //=> true
+ * notEmpty([]);          //=> false
+ * notEmpty('');          //=> false
+ * notEmpty(null);        //=> true
+ * notEmpty({});          //=> false
+ * notEmpty({length: 0}); //=> true
  */
 const notEmpty = complement( isEmpty );
 
