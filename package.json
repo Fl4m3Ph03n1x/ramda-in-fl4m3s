@@ -1,6 +1,6 @@
 {
   "name": "ramda-in-fl4m3s",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Complementary utils library that adds new functions on top of ramda.",
   "main": "./src/index.js",
   "scripts": {
