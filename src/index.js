@@ -201,6 +201,9 @@ const assocTrans = curry(
  * @param   {String}    newPropName The new name of the property.
  * @param   {Object}    obj         The object to clone.
  * @returns {Object}    A new object equivalent to <code>obj</code> but with the given property renamed.
+ * 
+ * @example
+ * renameProp( "tree", "plant", { tree: "sunflower" } );    //=> { plant: "sunflower" };
  */
 const renameProp = curry(
     ( oldPropName, newPropName, object ) => pipe(
