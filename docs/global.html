@@ -579,6 +579,21 @@ Note that this copies and flattens prototype properties onto the new object as w
 
 
 
+  <div class="example-container">
+    <a class="link-icon" href="#assocTrans-examples">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h5 id="assocTrans-examples">Example</h5>
+    
+
+  <pre class="prettyprint"><code>const getMean = pipe( prop( "earnings" ), mean );
+assocTrans( "mean", getMean, { earnings: [1, 2, 3], trimester: 1 } );    //=> { earnings: [1, 2, 3], trimester: 1, mean: 2 };</code></pre>
+
+
+  </div>
+
 
       
         
@@ -1766,7 +1781,7 @@ Finishes once all the Promises are done via use of Promise.all.</p>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="index.js.html">index.js</a>, <a href="index.js.html#line235">line 235</a>
+          <a href="index.js.html">index.js</a>, <a href="index.js.html#line247">line 247</a>
         </li>
       </ul>
     </dd>
@@ -1943,7 +1958,7 @@ If <code>fn</code> does not return a Promise, then its result is lifted into one
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="index.js.html">index.js</a>, <a href="index.js.html#line208">line 208</a>
+          <a href="index.js.html">index.js</a>, <a href="index.js.html#line215">line 215</a>
         </li>
       </ul>
     </dd>
@@ -1967,6 +1982,22 @@ If <code>fn</code> does not return a Promise, then its result is lifted into one
 
 
 
+
+  <div class="example-container">
+    <a class="link-icon" href="#mapToSequentialPromises-examples">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h5 id="mapToSequentialPromises-examples">Example</h5>
+    
+
+  <pre class="prettyprint"><code>const wait = time => new Promise( resolve => { setTimeout( resolve, time ); });
+const waitAndPrint = data => wait( 1000 ).then( ( ) => console.log( data ) );
+mapToSequentialPromises( waitAndPrint, [1, 2, 3] );                              //=> 1, 2, 3 ( each with 1000ms of delay between )</code></pre>
+
+
+  </div>
 
 
       
@@ -2440,7 +2471,7 @@ Returns a single Promise.</p>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="index.js.html">index.js</a>, <a href="index.js.html#line263">line 263</a>
+          <a href="index.js.html">index.js</a>, <a href="index.js.html#line275">line 275</a>
         </li>
       </ul>
     </dd>
@@ -2670,7 +2701,7 @@ Note that this copies and flattens prototype properties onto the new object as w
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="index.js.html">index.js</a>, <a href="index.js.html#line190">line 190</a>
+          <a href="index.js.html">index.js</a>, <a href="index.js.html#line194">line 194</a>
         </li>
       </ul>
     </dd>
@@ -2694,6 +2725,20 @@ Note that this copies and flattens prototype properties onto the new object as w
 
 
 
+
+  <div class="example-container">
+    <a class="link-icon" href="#renameProp-examples">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h5 id="renameProp-examples">Example</h5>
+    
+
+  <pre class="prettyprint"><code>renameProp( "tree", "plant", { tree: "sunflower" } );    //=> { plant: "sunflower" };</code></pre>
+
+
+  </div>
 
 
       
@@ -2845,7 +2890,7 @@ Note that this copies and flattens prototype properties onto the new object as w
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="index.js.html">index.js</a>, <a href="index.js.html#line250">line 250</a>
+          <a href="index.js.html">index.js</a>, <a href="index.js.html#line262">line 262</a>
         </li>
       </ul>
     </dd>
@@ -3020,7 +3065,7 @@ Note that this copies and flattens prototype properties onto the new object as w
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="index.js.html">index.js</a>, <a href="index.js.html#line279">line 279</a>
+          <a href="index.js.html">index.js</a>, <a href="index.js.html#line291">line 291</a>
         </li>
       </ul>
     </dd>

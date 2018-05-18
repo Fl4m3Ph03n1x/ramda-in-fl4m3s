@@ -271,6 +271,10 @@ const compact = filter(
  * @returns {Object}    A new object equivalent to &lt;code>obj&lt;/code> but with &lt;code>prop&lt;/code> changed to have the result of &lt;code>fn&lt;/code> as a value.
  * 
  * @see     http://ramdajs.com/docs/#assoc
+ * 
+ * @example
+ * const getMean = pipe( prop( "earnings" ), mean );
+ * assocTrans( "mean", getMean, { earnings: [1, 2, 3], trimester: 1 } );    //=> { earnings: [1, 2, 3], trimester: 1, mean: 2 };
  */
 const assocTrans = curry(
     ( prop, transformation, object ) => assoc( prop, transformation( object ), object )
@@ -286,6 +290,9 @@ const assocTrans = curry(
  * @param   {String}    newPropName The new name of the property.
  * @param   {Object}    obj         The object to clone.
  * @returns {Object}    A new object equivalent to &lt;code>obj&lt;/code> but with the given property renamed.
+ * 
+ * @example
+ * renameProp( "tree", "plant", { tree: "sunflower" } );    //=> { plant: "sunflower" };
  */
 const renameProp = curry(
     ( oldPropName, newPropName, object ) => pipe(
@@ -304,6 +311,11 @@ const renameProp = curry(
  * @param   {Function}  fn      The function to apply to each element of &lt;code>list&lt;/code>.
  * @param   {List}      list    The list to be iterated over sequentially.
  * @returns {List}      A list of Promises with the results of applying &lt;code>fn&lt;/code> to &lt;code>list&lt;/code>.
+ * 
+ * @example
+ * const wait = time => new Promise( resolve => { setTimeout( resolve, time ); });
+ * const waitAndPrint = data => wait( 1000 ).then( ( ) => console.log( data ) );
+ * mapToSequentialPromises( waitAndPrint, [1, 2, 3] );                              //=> 1, 2, 3 ( each with 1000ms of delay between )
  */
 const mapToSequentialPromises = curry(
     ( transformationFn, dataArray ) =>
