@@ -222,6 +222,11 @@ const renameProp = curry(
  * @param   {Function}  fn      The function to apply to each element of <code>list</code>.
  * @param   {List}      list    The list to be iterated over sequentially.
  * @returns {List}      A list of Promises with the results of applying <code>fn</code> to <code>list</code>.
+ * 
+ * @example
+ * const wait = time => new Promise( resolve => { setTimeout( resolve, time ); });
+ * const waitAndPrint = data => wait( 1000 ).then( ( ) => console.log( data ) );
+ * mapToSequentialPromises( waitAndPrint, [1, 2, 3] );                              //=> 1, 2, 3 ( each with 1000ms of delay between )
  */
 const mapToSequentialPromises = curry(
     ( transformationFn, dataArray ) =>
