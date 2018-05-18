@@ -182,6 +182,10 @@ const compact = filter(
  * @returns {Object}    A new object equivalent to <code>obj</code> but with <code>prop</code> changed to have the result of <code>fn</code> as a value.
  * 
  * @see     http://ramdajs.com/docs/#assoc
+ * 
+ * @example
+ * const getMean = pipe( prop( "earnings" ), mean );
+ * assocTrans( "mean", getMean, { earnings: [1, 2, 3], trimester: 1 } );    //=> { earnings: [1, 2, 3], trimester: 1, mean: 2 };
  */
 const assocTrans = curry(
     ( prop, transformation, object ) => assoc( prop, transformation( object ), object )
