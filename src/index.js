@@ -158,7 +158,7 @@ const isMap         =   is( Map );
 /**
  * @function    compact
  * @description
- * Returns a copy of the array with all falsey and empty values removed.
+ * Returns a copy of the array with all falsy and empty values removed.
  * 
  * @param   {List}  list    The list to compact.
  * @returns {List}  The new compacted list.
@@ -254,6 +254,11 @@ const mapToSequentialPromises = curry(
  * @param       {Function}  fn      The function to apply to each element of <code>list</code>.
  * @param       {List}      list    The list to be iterated over concurrently.
  * @returns     {Promise}   A promise containing the new list.
+ * 
+ * @example
+ * const wait = time => new Promise( resolve => { setTimeout( resolve, time ); });
+ * const waitAndDouble = data => wait( 1000 ).then( ( ) =>  data * 2  );
+ * mapAsyncFn( waitAndDouble, [1, 2, 3] ).then( console.log );               //=> 2, 4, 6 ( all at the same time, 1 second after `mapAsyncFn` is executed )  
  */
 const mapAsyncFn = curry(
     ( asyncFn, list ) => Promise.all( map( asyncFn, list ) )
@@ -267,6 +272,10 @@ const mapAsyncFn = curry(
  * @param   {Function}  fn      The reduce function.
  * @param   {List}      list    List of values to reduce.
  * @returns {*}         The result of the iteration function.
+ * 
+ * @example
+ * const add = ( x, y ) => x + y;
+ * seedlessReduce( add, [ 1, 2, 3 ] );  //=> returns 6
  */
 const seedlessReduce = curry(
     ( fn, list ) => list.reduce( fn )
@@ -296,6 +305,10 @@ const promiseAll = pList => Promise.all( pList );
  * @param   {Function}  fn      The function to execute after <code>promise</code>.
  * @param   {Promise}   promise The promise to run.
  * @returns {Promise}   A promise with the return value of <code>fn</code>. 
+ * 
+ * @example
+ * const wait = time => new Promise( resolve => { setTimeout( resolve, time ); });
+ * then( () => console.log("hello"), wait(1000) );      //=> Prints 'hello' after 1 second
  */
 const then = curry(
     ( fn, promise ) => promise.then( fn )

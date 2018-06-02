@@ -617,7 +617,7 @@ assocTrans( "mean", getMean, { earnings: [1, 2, 3], trimester: 1 } );    //=> { 
 
 
   <div class="description">
-    <p>Returns a copy of the array with all falsey and empty values removed.</p>
+    <p>Returns a copy of the array with all falsy and empty values removed.</p>
   </div>
 
 
@@ -1806,6 +1806,22 @@ Finishes once all the Promises are done via use of Promise.all.</p>
 
 
 
+  <div class="example-container">
+    <a class="link-icon" href="#mapAsyncFn-examples">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h5 id="mapAsyncFn-examples">Example</h5>
+    
+
+  <pre class="prettyprint"><code>const wait = time => new Promise( resolve => { setTimeout( resolve, time ); });
+const waitAndDouble = data => wait( 1000 ).then( ( ) =>  data * 2  );
+mapAsyncFn( waitAndDouble, [1, 2, 3] ).then( console.log );               //=> 2, 4, 6 ( all at the same time, 1 second after `mapAsyncFn` is executed )  </code></pre>
+
+
+  </div>
+
 
       
         
@@ -2471,7 +2487,7 @@ Returns a single Promise.</p>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="index.js.html">index.js</a>, <a href="index.js.html#line275">line 275</a>
+          <a href="index.js.html">index.js</a>, <a href="index.js.html#line284">line 284</a>
         </li>
       </ul>
     </dd>
@@ -2890,7 +2906,7 @@ Note that this copies and flattens prototype properties onto the new object as w
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="index.js.html">index.js</a>, <a href="index.js.html#line262">line 262</a>
+          <a href="index.js.html">index.js</a>, <a href="index.js.html#line267">line 267</a>
         </li>
       </ul>
     </dd>
@@ -2914,6 +2930,21 @@ Note that this copies and flattens prototype properties onto the new object as w
 
 
 
+
+  <div class="example-container">
+    <a class="link-icon" href="#seedlessReduce-examples">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h5 id="seedlessReduce-examples">Example</h5>
+    
+
+  <pre class="prettyprint"><code>const add = ( x, y ) => x + y;
+seedlessReduce( add, [ 1, 2, 3 ] );  //=> returns 6</code></pre>
+
+
+  </div>
 
 
       
@@ -3065,7 +3096,7 @@ Note that this copies and flattens prototype properties onto the new object as w
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="index.js.html">index.js</a>, <a href="index.js.html#line291">line 291</a>
+          <a href="index.js.html">index.js</a>, <a href="index.js.html#line300">line 300</a>
         </li>
       </ul>
     </dd>
@@ -3089,6 +3120,21 @@ Note that this copies and flattens prototype properties onto the new object as w
 
 
 
+
+  <div class="example-container">
+    <a class="link-icon" href="#then-examples">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h5 id="then-examples">Example</h5>
+    
+
+  <pre class="prettyprint"><code>const wait = time => new Promise( resolve => { setTimeout( resolve, time ); });
+then( () => console.log("hello"), wait(1000) );      //=> Prints 'hello' after 1 second</code></pre>
+
+
+  </div>
 
 
       
