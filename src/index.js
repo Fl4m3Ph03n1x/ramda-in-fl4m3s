@@ -224,8 +224,7 @@ const renameProp = curry(
  * @returns {List}      A list of Promises with the results of applying <code>fn</code> to <code>list</code>.
  * 
  * @example
- * const wait = time => new Promise( resolve => { setTimeout( resolve, time ); });
- * const waitAndPrint = data => wait( 1000 ).then( ( ) => console.log( data ) );
+ * const waitAndPrint = delay( 1000, console.log );
  * mapToSequentialPromises( waitAndPrint, [1, 2, 3] );                              //=> 1, 2, 3 ( each with 1000ms of delay between )
  */
 const mapToSequentialPromises = curry(
@@ -256,8 +255,8 @@ const mapToSequentialPromises = curry(
  * @returns     {Promise}   A promise containing the new list.
  * 
  * @example
- * const wait = time => new Promise( resolve => { setTimeout( resolve, time ); });
- * const waitAndDouble = data => wait( 1000 ).then( ( ) =>  data * 2  );
+ * const double = x => x * 2;
+ * const waitAndDouble = delay( 1000, double );
  * mapAsyncFn( waitAndDouble, [1, 2, 3] ).then( console.log );               //=> 2, 4, 6 ( all at the same time, 1 second after `mapAsyncFn` is executed )  
  */
 const mapAsyncFn = curry(
@@ -307,11 +306,44 @@ const promiseAll = pList => Promise.all( pList );
  * @returns {Promise}   A promise with the return value of <code>fn</code>. 
  * 
  * @example
- * const wait = time => new Promise( resolve => { setTimeout( resolve, time ); });
  * then( () => console.log("hello"), wait(1000) );      //=> Prints 'hello' after 1 second
  */
 const then = curry(
     ( fn, promise ) => promise.then( fn )
+);
+
+/**
+ * @function    wait
+ * @description
+ * Equivalent of `setTimeout` but in Promise format. 
+ * 
+ * @param   {Number}    ms  The amount of milliseconds to wait.
+ * @returns {Promise}   An empty promise that always resolves.
+ * 
+ * @example
+ * const sayHello = ( ) => console.log( "hello" );
+ * wait( 1000 ).then( sayHello );                   //=> print 'hello' after 1 second
+ */
+const wait = ms => new Promise( resolve => setTimeout( resolve, ms ) );
+
+/**
+ * @function    delay
+ * @description 
+ * Waits `ms` milliseconds and then executes the given function with the given data.
+ * 
+ * @param   {Number}    ms      The amount of milliseconds to wait.
+ * @param   {Function}  fn      The function to execute after `ms` milliseconds have passed.
+ * @param   {*}         data    The data to be passed to `fn` for it to execute.
+ * @returns {Promise}   A promise with the execution result of `fn`. 
+ *
+ * @example
+ * const double = x => x * 2;
+ * const waitAndDouble = delay( 1000, double );
+ * 
+ * waitAndDouble( 2 ).then( console.log );      //=> prints 4 after 1 second 
+ */
+const delay = curry(
+    ( ms, fn, data ) => wait( ms ).then( ( ) => fn( data ) )
 );
 
 module.exports = Object.freeze( {
@@ -330,5 +362,7 @@ module.exports = Object.freeze( {
     mapAsyncFn,
     compact,
     seedlessReduce,
-    then
+    then,
+    wait,
+    delay
 } );

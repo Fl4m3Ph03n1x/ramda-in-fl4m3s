@@ -37,3 +37,5 @@ This utils comes with the following extra functions:
  - [compact](https://fl4m3ph03n1x.github.io/ramda-in-fl4m3s/global.html#compact)
  - [seedlessReduce](https://fl4m3ph03n1x.github.io/ramda-in-fl4m3s/global.html#seedlessReduce)
  - [then](https://fl4m3ph03n1x.github.io/ramda-in-fl4m3s/global.html#then)
+ - [wait](https://fl4m3ph03n1x.github.io/ramda-in-fl4m3s/global.html#wait)
+ - [delay](https://fl4m3ph03n1x.github.io/ramda-in-fl4m3s/global.html#delay)
